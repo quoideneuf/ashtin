@@ -4,7 +4,7 @@
   "description": "Populate ArchivesSpace from file system directories",
   "main": "./lib/app.js",
   "bin": {
-    "as_cli": "./lib/app.js"
+    "as_cli": "./bin/as_cli.js"
   },
   "dependencies": {
     "ansi": "^0.3.0",
