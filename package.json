@@ -1,0 +1,26 @@
+{
+  "name": "as_cli",
+  "version": "0.0.0",
+  "description": "Populate ArchivesSpace from file system directories",
+  "main": "./lib/app.js",
+  "bin": {
+    "as_cli": "./lib/app.js"
+  },
+  "dependencies": {
+    "ansi": "^0.3.0",
+    "cli-table": "^0.3.0",
+    "events": "^1.0.1",
+    "form-data": "^0.1.3",
+    "minimist": "^0.2.0",
+    "path": "^0.4.9",
+    "prompt": "^0.2.13",
+    "pwuid": "^0.1.0",
+    "request": "^2.36.0",
+    "util": "^0.10.3",
+    "winston": "^0.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "author": "Brian Hoffman",
+  "license": "ISC"
+}
