@@ -5,7 +5,7 @@ Directory-level ArchivesSpace imports from the command line.
 
 To install:
 
-    $ npm install https://github.com/lcdhoffman/as_cli/tarball/master
+    $ npm install -g https://github.com/lcdhoffman/as_cli/tarball/master
 
 To setup:
 
