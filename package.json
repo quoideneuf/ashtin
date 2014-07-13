@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "ansi": "^0.3.0",
+    "asapi": "https://github.com/lcdhoffman/asapi/tarball/master",
     "cli-table": "^0.3.0",
     "events": "^1.0.1",
     "form-data": "^0.1.3",
