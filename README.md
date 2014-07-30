@@ -1,26 +1,62 @@
-ArchivesSpace Command Line Imports
-==================================
+ArchivesSpace CLI
+===================
 
-Directory-level ArchivesSpace imports from the command line.
+NodeJS command line client for ArchivesSpace
 
-To install:
+## Getting Started
+
+Install:
 
     $ npm install -g https://github.com/lcdhoffman/as_cli/tarball/master
 
-To setup:
+Log in to your ArchivesSpace instance:
 
-    $ as_cli setup
+    $ ascli setup
 
-To switch repositories:
+Select your active repository:
 
-    $ as_cli repositories
+    $ ascli repositories
 
-To import a directory of files:
+## Usage
 
-    $ as_cli jobs create --dir all/my/eads --import-type ead_xml
+To see all available subcommands:
 
-To register a directory of files as digital objects / file versions:
+    $ ascli
 
-    $ as_cli files register --dir all/my/scans
+## Using Custom Scripts 
+
+In addition to the built-in commands, you can use a custom script. Your script should assign a single function to the module.exports global object, and that function should take a single argument, which is the client (See https://github.com/lcdhoffman/asapi for more information).
+
+    $ ascli run-script path/to/your/script.js
+
+Example script:
+
+```javascript
+module.exports = function(api) {
+  api.eachResource(function(resource) {
+    var update = false;
+
+    for (var i = 0; i < resource.extents.length; i++) {
+
+      if (resource.extents[i] && resource.extents[i].extent_type == 'linear_feet') {
+        resource.extents[i].number = (resource.extents[i].number * 0.3048) + "";
+        resource.extents[i].extent_type = "linear_meters";
+        update = true;
+      }
+    }
+
+    if (update) api.updateRecord(resource, function(err, body) {
+      if (err) {
+        throw (err).
+      } else {
+        console.log(body);
+      }
+    });
+  })
+});
+```
+
+
+    
 
 
