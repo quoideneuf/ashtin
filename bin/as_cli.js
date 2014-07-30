@@ -2,8 +2,7 @@
 
 var path = require('path');
 var fs = require('fs');
-var lib = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
-var App = require(lib + '/app.js')['App'];
+var root = path.join(path.dirname(fs.realpathSync(__filename)), '../');
 
-new App().run();
+require(path.join(root, "index.js"));
 

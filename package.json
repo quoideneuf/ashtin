@@ -1,10 +1,14 @@
 {
   "name": "as_cli",
   "version": "0.0.0",
-  "description": "Populate ArchivesSpace from file system directories",
-  "main": "./lib/app.js",
+  "description": "Command line tool suite for ArchivesSpace",
+  "main": "./index.js",
   "bin": {
+    "ascli": "./bin/as_cli.js",
     "as_cli": "./bin/as_cli.js"
+  },
+  "directories": {
+    "bin": "./bin"
   },
   "dependencies": {
     "ansi": "^0.3.0",
@@ -12,6 +16,7 @@
     "cli-table": "^0.3.0",
     "events": "^1.0.1",
     "form-data": "^0.1.3",
+    "helmsman": "^0.2.6",
     "minimist": "^0.2.0",
     "path": "^0.4.9",
     "prompt": "^0.2.13",
