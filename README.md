@@ -1,15 +1,15 @@
 ArchivesSpace CLI
 ===================
 
-NodeJS command line client for ArchivesSpace
+NodeJS command line client for ArchivesSpace. Work in progress.
 
 ## Getting Started
 
 Install:
 
-    $ npm install -g https://github.com/lcdhoffman/as_cli/tarball/master
+    $ npm install ascli
 
-Log in to your ArchivesSpace instance:
+Log in to your ArchivesSpace instance and save your session key:
 
     $ ascli setup
 
@@ -25,7 +25,9 @@ To see all available subcommands:
 
 ## Using Custom Scripts 
 
-In addition to the built-in commands, you can use a custom script. Your script should assign a single function to the module.exports global object, and that function should take a single argument, which is the client (See https://github.com/lcdhoffman/asapi for more information).
+In addition to the built-in commands, you can use a custom script. Your script should assign a single function to the module.exports global object, and that function should take a single argument, which is the activated client.
+
+See https://github.com/lcdhoffman/asapi for more information about working with the api.
 
     $ ascli run-script path/to/your/script.js
 
@@ -55,8 +57,3 @@ module.exports = function(api) {
   })
 });
 ```
-
-
-    
-
-

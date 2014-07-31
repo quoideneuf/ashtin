@@ -1,5 +1,5 @@
 {
-  "name": "as_cli",
+  "name": "ascli",
   "version": "0.0.0",
   "description": "Command line tool suite for ArchivesSpace",
   "main": "./index.js",
@@ -12,19 +12,23 @@
   },
   "dependencies": {
     "ansi": "^0.3.0",
-    "asapi": "https://github.com/lcdhoffman/asapi/tarball/master",
+    "asapi": "0.0.0",
     "cli-table": "^0.3.0",
     "events": "^1.0.1",
-    "form-data": "^0.1.3",
+    "form-data": "^0.1.4",
     "helmsman": "^0.2.6",
     "minimist": "^0.2.0",
     "path": "^0.4.9",
     "prompt": "^0.2.13",
     "pwuid": "^0.1.0",
-    "request": "^2.36.0",
+    "request": "^2.39.0",
     "util": "^0.10.3",
     "winston": "^0.7.3"
   },
+  "keywords": [
+    "archivesspace",
+    "cli"
+  ],
   "devDependencies": {},
   "scripts": {},
   "author": "Brian Hoffman",
