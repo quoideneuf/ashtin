@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 
 exports.command = {
-  description: "Load the ASpace api and pass it to a custom script (which must export a single function)",
+  description: "Load the ASpace api and pass it to a custom script.",
   arguments: "<path>"
 }
-
 
 
 if (require.main === module) {

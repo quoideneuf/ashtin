@@ -7,21 +7,21 @@ NodeJS command line client for ArchivesSpace. Work in progress.
 
 Install:
 
-    $ npm install ascli
+    $ npm install as-cli
 
 Log in to your ArchivesSpace instance and save your session key:
 
-    $ ascli setup
+    $ as-cli setup
 
 Select your active repository:
 
-    $ ascli repositories
+    $ as-cli repositories
 
 ## Usage
 
 To see all available subcommands:
 
-    $ ascli
+    $ as-cli
 
 ## Using Custom Scripts 
 
@@ -29,7 +29,7 @@ In addition to the built-in commands, you can use a custom script. Your script s
 
 See https://github.com/lcdhoffman/asapi for more information about working with the api.
 
-    $ ascli run-script path/to/your/script.js
+    $ as-cli run-script path/to/your/script.js
 
 Example script:
 
