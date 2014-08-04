@@ -1,6 +1,6 @@
 {
   "name": "as-cli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Command line tool suite for ArchivesSpace",
   "main": "./index.js",
   "bin": {
