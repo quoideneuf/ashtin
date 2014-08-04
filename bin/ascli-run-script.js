@@ -12,6 +12,11 @@ if (require.main === module) {
   var api = require('../lib/load_api.js');
   var argv = require('minimist')(process.argv.slice(2));
 
+  if (argv._.length === 0) {
+    console.log("Need a script path!");
+    return;
+  }
+
   var scriptPath = path.join(process.cwd(), argv._.shift());
 
   //todo - check that the file exists

@@ -8,11 +8,18 @@ var Queue = function() {
   var that = this;
   var q = [];
   var throttle = 0;
+  var keepalive = 10;
+  var done = 0;
+
+  this.kill = function() {
+    keepalive = 0;
+  }
 
   this.tickDown = function() {
     if(throttle > 0) {
       throttle -= 1;
     }
+    done += 1;
   }
 
   this.push = function(callback) {
@@ -24,24 +31,43 @@ var Queue = function() {
       q.pop()();
       throttle += 1;
     }
-    setTimeout(function() {
-      console.log("Throttle " + throttle + " - Size " + q.length);
-      that.start();
-    }, 2000);
-  }
 
+    if (throttle === 0 && q.length === 0) keepalive--;
+
+    setTimeout(function() {
+      if (keepalive > 0) {
+        console.log("Active " + throttle + " - Queued " + q.length + " - Completed " + done);
+        that.start();
+      }
+    }, 1000);
+  }
 }
+
+
+function printUsage() {
+  console.log("Usage: export-all-eads.js --dir <directory>");
+}
+
 
 module.exports = function(api) {
 
-  var dir = argv['dir']
+  var dir = argv['dir'];
   var exists = fs.existsSync(dir);
 
+
   if(!exists) {
-    throw("Output directory does not exist");   
+    console.log("Output directory not found. Make sure to use option --dir");
+    printUsage();
+   return;
   }
 
   var q = new Queue();
+
+  api.on('serverError', function(code) {
+    q.kill();
+  });
+
+
   q.start()
   
   api.eachResource(function(resource) {
@@ -50,15 +76,15 @@ module.exports = function(api) {
       
       console.log("Download EAD for " + resource.title);
 
-      var id = resource.uri.replace(/.*\//, '')
+      var id = resource.uri.replace(/.*\//, '');
+      var ead_id = resource.ead_id || id;
 
       var ead_uri = "/repositories/:repo_id/resource_descriptions/" + id + ".xml?include_daos=true&include_unpublished=true&numbered_cs=false";
 
-      var outpath = path.join(dir, id + ".xml");
+      var outpath = path.join(dir, ead_id + ".xml");
       var ws = fs.createWriteStream(outpath);
 
       ws.on('finish', function() {
-        console.log("finish");
         q.tickDown();
       });
 
