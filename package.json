@@ -1,6 +1,6 @@
 {
   "name": "as-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Command line tool suite for ArchivesSpace",
   "main": "./index.js",
   "bin": {
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "ansi": "^0.3.0",
-    "asapi": "0.0.0",
+    "asapi": "0.0.1",
     "cli-table": "^0.3.0",
     "events": "^1.0.1",
     "form-data": "^0.1.4",
@@ -32,6 +32,8 @@
   ],
   "devDependencies": {},
   "scripts": {},
+  "bugs": "https://github.com/lcdhoffman/as_cli/issues",
+  "homepage": "https://github.com/lcdhoffman/as_cli",
   "author": "Brian Hoffman",
   "license": "ISC"
 }

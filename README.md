@@ -1,7 +1,7 @@
 ArchivesSpace CLI
 ===================
 
-NodeJS command line client for ArchivesSpace. Work in progress.
+This is a work in progress. It is intended to provide a command-line interface for working with the ArchivesSpace backend API. See http://github.com/archivesspace/archivesspace/.
 
 ## Getting Started
 
@@ -54,6 +54,8 @@ module.exports = function(api) {
         console.log(body);
       }
     });
-  })
+  });
 });
 ```
+
+I'm still trying to figure out a way for ad-hoc scripts to use require in a way that doesn't require a local node-modules directory. For the time being, if your script requires a 3rd party module, you'll need to make nodejs think your working directory is a project. (i.e., run npm init and install modules locally, or symink to your global node_modules directory).
