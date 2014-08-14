@@ -24,6 +24,12 @@ if (require.main === module) {
 
   case 'create':
 
+    if (!argv['dir'] || !argv['import-type']) {
+      console.log("Usage: as-cli jobs create --dir <DIR> --import-type <IMPORTER KEY>");
+      return;
+    }
+
+
     var runner = new JobRunner({
       dir: argv['dir'],
       import_type: argv['import-type'],
