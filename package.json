@@ -1,7 +1,8 @@
 {
   "name": "as-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Command line tool suite for ArchivesSpace",
+  "repository": "https://github.com/quoideneuf/as_cli",
   "main": "./index.js",
   "bin": {
     "as-cli": "./bin/as_cli.js",
@@ -13,18 +14,19 @@
   },
   "dependencies": {
     "ansi": "^0.3.0",
-    "asapi": "0.0.2",
-    "cli-table": "^0.3.0",
-    "events": "^1.0.1",
-    "form-data": "^0.1.4",
-    "helmsman": "^0.2.6",
-    "minimist": "^0.2.0",
+    "asapi": "0.1.1",
+    "cli-table": "^0.3.1",
+    "events": "^1.0.2",
+    "form-data": "^0.2.0",
+    "helmsman": "^0.4.0",
+    "minimist": "^1.1.0",
     "path": "^0.4.9",
-    "prompt": "^0.2.13",
-    "pwuid": "^0.1.0",
-    "request": "^2.39.0",
+    "prompt": "^0.2.14",
+    "pwuid": "^1.0.1",
+    "q": "^1.1.2",
+    "request": "^2.49.0",
     "util": "^0.10.3",
-    "winston": "^0.7.3"
+    "winston": "^0.8.3"
   },
   "keywords": [
     "archivesspace",

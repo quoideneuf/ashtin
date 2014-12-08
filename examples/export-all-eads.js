@@ -79,7 +79,7 @@ module.exports = function(api) {
       var id = resource.uri.replace(/.*\//, '');
       var ead_id = resource.ead_id || id;
 
-      var ead_uri = "/repositories/:repo_id/resource_descriptions/" + id + ".xml?include_daos=true&include_unpublished=true&numbered_cs=false";
+      var ead_uri = "/repositories/:repo_id/resource_descriptions/" + id + ".xml?include_daos=true&include_unpublished=true&numbered_cs=true";
 
       var outpath = path.join(dir, ead_id + ".xml");
       var ws = fs.createWriteStream(outpath);
