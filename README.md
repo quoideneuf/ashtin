@@ -40,7 +40,7 @@ module.exports = function(api) {
 
     for (var i = 0; i < resource.extents.length; i++) {
 
-      if (resource.extents[i] && resource.extents[i].extent_type == 'linear_feet') {
+      if (resource.extents[i] && resource.extents[i].extent_type === 'linear_feet') {
         resource.extents[i].number = (resource.extents[i].number * 0.3048) + "";
         resource.extents[i].extent_type = "linear_meters";
         update = true;
@@ -58,4 +58,5 @@ module.exports = function(api) {
 });
 ```
 
-I'm still trying to figure out a way for ad-hoc scripts to use require in a way that doesn't require a local node-modules directory. For the time being, if your script requires a 3rd party module, you'll need to make nodejs think your working directory is a project. (i.e., run npm init and install modules locally, or symink to your global node_modules directory).
+If you want to use third-party modules in your script, you need to run `npm init` and then
+install the modules you need.
