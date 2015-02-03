@@ -9,6 +9,10 @@ if (require.main === module) {
   var api = require('../lib/load_api.js');
 
   api.ping(function(err, body) {
-    console.log("ArchivesSpace Version: " + body.archivesSpaceVersion);
+    if (err) {
+      console.log(err);
+    } else {
+        console.log("ArchivesSpace Version: " + body.archivesSpaceVersion);
+    }
   });
 }
