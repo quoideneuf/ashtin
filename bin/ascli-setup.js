@@ -17,7 +17,7 @@ if (require.main === module) {
   prompt.get([{
     description: 'ArchivesSpace Backend URL',
     name: 'backend_url',
-    pattern: /^http/,
+    pattern: /^(http|\d{4})/,
     type: 'string',
     required: true,
   default: config.backend_url,
@@ -31,12 +31,13 @@ if (require.main === module) {
     name: 'password',
     hidden: true,
   }], function(err, result) {
-    api = new Api({url:result.backend_url});
+    backend_url = result.backend_url.match(/^\d{4}$/) ? "http://localhost:" + result.backend_url : result.backend_url;
+    api = new Api({url:backend_url});
     api.login(result, function(err, session) {
       if (err) {
         respond.error(err);
       } else {
-        config.backend_url = result.backend_url;
+        config.backend_url = backend_url;
         config.session = session;
         config.save();
         respond.success("You are logged in!");
