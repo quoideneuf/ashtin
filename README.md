@@ -7,7 +7,7 @@ This is a work in progress. It is intended to provide a command-line interface f
 
 Install:
 
-    $ npm install as-cli
+    $ npm install as-cli -g
 
 Log in to your ArchivesSpace instance and save your session key:
 
@@ -27,7 +27,7 @@ To see all available subcommands:
 
 In addition to the built-in commands, you can use a custom script. Your script should assign a single function to the module.exports global object, and that function should take a single argument, which is the activated client.
 
-See https://github.com/lcdhoffman/asapi for more information about working with the api.
+See https://github.com/quoideneuf/asapi for more information about working with the api.
 
     $ as-cli run-script path/to/your/script.js
 
