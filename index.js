@@ -3,7 +3,7 @@ var helmsman = require('helmsman');
 
 var opts = {
   localDir: __dirname + "/bin",
-  prefix: "ascli"
+  prefix: "ashtin"
 }
 
 var cli = helmsman(opts);

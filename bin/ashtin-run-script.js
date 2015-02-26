@@ -8,8 +8,13 @@ exports.command = {
 
 if (require.main === module) {
   var path = require('path');
+  var pop = require('pop-it');
 
   var api = require('../lib/load_api.js');
+
+  pop('api', api);
+  pop('generator', require('../lib/generator.js'));
+
   var argv = require('minimist')(process.argv.slice(2));
 
   if (argv._.length === 0) {
@@ -25,5 +30,5 @@ if (require.main === module) {
 
   //todo - check that the script exports a single function
 
-  scriptFunc(api);
+  pop(scriptFunc)();
 }

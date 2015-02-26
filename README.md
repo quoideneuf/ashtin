@@ -1,62 +1,71 @@
-ArchivesSpace CLI
+ArchivesSpace Hacker's Toolkit (in Node)
 ===================
 
-This is a work in progress. It is intended to provide a command-line interface for working with the ArchivesSpace backend API. See http://github.com/archivesspace/archivesspace/.
+This is a work in progress. It includes a command-line interface and repl for working with the [ArchivesSpace](http://github.com/archivesspace/archivesspace/) backend API, and can also be used to build custom scripts or client applications in NodeJS.
 
-## Getting Started
+## Global Install
 
-Install:
+To install:
 
-    $ npm install as-cli -g
+    $ npm install ashtin -g
 
 Log in to your ArchivesSpace instance and save your session key:
 
-    $ as-cli setup
+    $ ashtin setup
 
-Select your active repository:
+Create a repository:
 
-    $ as-cli repositories
+    $ ashtin repositories create --repo-code FOO --name BAR
 
-## Usage
+View repository list and select your active repository:
 
-To see all available subcommands:
+    $ ashtin repositories
 
-    $ as-cli
+See the available subcommands:
 
-## Using Custom Scripts 
+    $ ashtin
 
-In addition to the built-in commands, you can use a custom script. Your script should assign a single function to the module.exports global object, and that function should take a single argument, which is the activated client.
 
-See https://github.com/quoideneuf/asapi for more information about working with the api.
+## Local Install
 
-    $ as-cli run-script path/to/your/script.js
+In addition to the built-in commands, you can use this package for custom scripts or applications. For example, if you'd like to
+write a simple node app that creates one random resource record in your default repository, and assuming you've installed the global utility
+per the section above:
 
-Example script:
+    $ ashtin setup
+    $ npm init
+    $ npm install ashtin --save
+    $ touch index.js
 
-```javascript
-module.exports = function(api) {
-  api.eachResource(function(resource) {
-    var update = false;
+This would be the body of your index.js file:
 
-    for (var i = 0; i < resource.extents.length; i++) {
+	
+	#!/usr/bin/env node
 
-      if (resource.extents[i] && resource.extents[i].extent_type === 'linear_feet') {
-        resource.extents[i].number = (resource.extents[i].number * 0.3048) + "";
-        resource.extents[i].extent_type = "linear_meters";
-        update = true;
+    module.exports = function(api, generator) {
+
+      if (!api.hasSession) {
+        console.log("Please get logged in first");
+        throw("Not logged in");
       }
-    }
 
-    if (update) api.updateRecord(resource, function(err, body) {
-      if (err) {
-        throw (err).
-      } else {
-        console.log(body);
-      }
-    });
-  });
-});
-```
+      api.createResource(generator.resource()).
+        then(function(json) {
+	    console.log("Created: " + json.uri);
+	  }).
+	  catch(function(err) {
+	    console.log(":( " + err);
+	  });
+	};
 
-If you want to use third-party modules in your script, you need to run `npm init` and then
-install the modules you need.
+
+Your script needs to export a single function with 'injected' arguments. There are currently two available arguments for injection:
+
+* 'api' - [an AS client](https://www.npmjs.com/package/asapi)
+* 'generator' - some simple record generators
+
+You can also add a module to this toolkit by writing your own library in the lib directory and submitting a pull request.
+
+Additional example scripts are in the 'examples' directory.
+
+

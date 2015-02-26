@@ -1,41 +1,46 @@
 {
-  "name": "as-cli",
-  "version": "0.0.6",
-  "description": "Command line tool suite for ArchivesSpace",
-  "repository": "https://github.com/quoideneuf/as_cli",
+  "name": "ashtin",
+  "version": "0.0.1",
+  "description": "ArchivesSpace Hacker's Toolkit (in Node).",
+  "repository": "https://github.com/quoideneuf/ashtin",
   "main": "./index.js",
   "bin": {
-    "as-cli": "./bin/as_cli.js",
-    "ascli": "./bin/as_cli.js",
-    "as_cli": "./bin/as_cli.js"
+    "as-cli": "./bin/ashtin.js",
+    "ascli": "./bin/ashtin.js",
+    "as_cli": "./bin/ashtin.js",
+    "ashtin": "./bin/ashtin.js",
   },
   "directories": {
     "bin": "./bin"
   },
   "dependencies": {
     "ansi": "^0.3.0",
-    "asapi": "0.1.1",
+    "asapi": "0.1.2",
     "cli-table": "^0.3.1",
     "events": "^1.0.2",
     "form-data": "^0.2.0",
-    "helmsman": "^0.4.0",
+    "helmsman": "^1.0.0",
+    "lodash": "^3.3.1",
     "minimist": "^1.1.0",
-    "path": "^0.4.9",
+    "path": "^0.11.14",
+    "pop-it": "^1.0.3",
     "prompt": "^0.2.14",
-    "pwuid": "^1.0.1",
-    "q": "^1.1.2",
-    "request": "^2.49.0",
+    "pwuid": "^1.0.2",
+    "q": "^1.2.0",
+    "repl.history": "^0.1.2",
+    "request": "^2.53.0",
     "util": "^0.10.3",
-    "winston": "^0.8.3"
+    "winston": "^0.9.0"
   },
   "keywords": [
     "archivesspace",
-    "cli"
+    "cli",
+    "node4lib"
   ],
   "devDependencies": {},
   "scripts": {},
-  "bugs": "https://github.com/lcdhoffman/as_cli/issues",
-  "homepage": "https://github.com/lcdhoffman/as_cli",
+  "bugs": "https://github.com/lcdhoffman/ashtin/issues",
+  "homepage": "https://github.com/lcdhoffman/ashtin",
   "author": "Brian Hoffman",
   "license": "ISC"
 }
