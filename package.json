@@ -8,7 +8,7 @@
     "as-cli": "./bin/ashtin.js",
     "ascli": "./bin/ashtin.js",
     "as_cli": "./bin/ashtin.js",
-    "ashtin": "./bin/ashtin.js",
+    "ashtin": "./bin/ashtin.js"
   },
   "directories": {
     "bin": "./bin"

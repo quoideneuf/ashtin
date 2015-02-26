@@ -35,9 +35,9 @@ per the section above:
     $ ashtin setup
     $ npm init
     $ npm install ashtin --save
-    $ touch index.js
+    $ touch create-repo.js
 
-This would be the body of your index.js file:
+This would be the body of your create-repo.js file:
 
 	
 	#!/usr/bin/env node
@@ -58,8 +58,11 @@ This would be the body of your index.js file:
 	  });
 	};
 
+And you would run it like this:
 
-Your script needs to export a single function with 'injected' arguments. There are currently two available arguments for injection:
+    ashtin run-script create-repo.js
+
+Your script must to export a single function with 'injected' arguments. There are currently two available arguments for injection:
 
 * 'api' - [an AS client](https://www.npmjs.com/package/asapi)
 * 'generator' - some simple record generators
