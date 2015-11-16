@@ -64,28 +64,39 @@ module.exports = function(api) {
     console.log("Size must be a number between 1 and 10000")
   }
 
-  function createNode(parentUri, parentDepth) {
-    if (typeof(parentDepth === 'undefined'))
-      parentDepth = 1;
+  function getOpts(opts) {
+    var opts = opts || {};
+    var summary = ["a box of foos", "a box of bars", "a box of cars"][_.random(0, 2)];
+
+    return _.merge({
+      resource: {ref: resourceUri},
+      extents: [generator.extent({container_summary: summary})]
+    }, opts);
+  }
+
+  function createNode(parentUri) {
+    var opts = {}
 
     if (size > 0) {
-      opts = {
-        resource: {ref: resourceUri},
-        extents: [generator.extent({container_summary: "a box of foos"})]
-      }
+
+      console.log("create node under " + parentUri)
+
       if (parentUri) {
         opts.parent = {ref: parentUri}
       }
       size = size - 1;
+
       rq.push(function() {
-        api.createArchivalObject(generator.archival_object(opts)).
+        api.createArchivalObject(generator.archival_object(getOpts(opts))).
           then(function(archivalObject) {
             rq.tickDown();
             countDown -= 1;
             console.log(archivalObject.uri);
-            if (parentDepth < 13 && size > 0) {
+            if (size > 0) {
               _.times(_.random(0, 100), function() {
-                createNode(archivalObject.uri, parentDepth + 1);
+                setTimeout(function() {
+                  createNode(archivalObject.uri);
+                }, _.random(100, 500));
               });
             }
             if (countDown < 1) {
@@ -103,6 +114,7 @@ module.exports = function(api) {
   rq.push(function() {
     api.createResource(generator.resource()).then(function(resource) {
       resourceUri = resource.uri
+      console.log(resource.uri)
       _.times(_.random(1, 10), function() {
         createNode();
       });

@@ -11,7 +11,7 @@ if (require.main === module) {
  var config = require('../lib/config.js');
 
   if(!config.active_repo) {
-    console.log("Need an active repo! Run ascli setup");
+    console.log("Need an active repo! Run ashtin setup");
     return;
   }
 
@@ -21,19 +21,23 @@ if (require.main === module) {
 
 
   if(!argv['record-type'] || !argv['resource'] || !argv['property'] || !argv['find'] || !argv['replace']) {
-    console.log("Usage: as-cli --resource {id} --record-type {type} --property {property} --find {find string or regexp} --replace {replace string}")
+    console.log("Usage: ashtin --resource {id} --record-type {type} --property {property} --find {find string or regexp} --replace {replace string}")
     return;
   }
 
   var job = {
-    scope: {
-      jsonmodel_type: argv['record-type'],
-      base_record_uri: repo_url + "/resources/" + argv['resource'],
-      property: argv['property']
-    },
-    arguments: {
-      find: argv['find'],
-      replace: argv['replace']
+    job_type: 'find_and_replace_job',
+    job: {
+      jsonmodel_type: 'find_and_replace_job',
+      scope: {
+        jsonmodel_type: argv['record-type'],
+        base_record_uri: repo_url + "/resources/" + argv['resource'],
+        property: argv['property']
+      },
+      arguments: {
+        find: argv['find'],
+        replace: argv['replace']
+      }
     }
   }
 
@@ -61,7 +65,7 @@ if (require.main === module) {
   };
 
 
-  api.post(repo_url + "/find_and_replace_jobs", job).
+  api.post(repo_url + "/jobs", job).
     then(function(result) {
       console.log(result.uri);
 

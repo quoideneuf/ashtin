@@ -1,6 +1,6 @@
 {
   "name": "ashtin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "ArchivesSpace Hacker's Toolkit (in Node).",
   "repository": "https://github.com/quoideneuf/ashtin",
   "main": "./index.js",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "ansi": "^0.3.0",
-    "asapi": "0.1.2",
+    "asapi": "^0.1.5",
     "cli-table": "^0.3.1",
     "events": "^1.0.2",
     "form-data": "^0.2.0",
