@@ -1,6 +1,6 @@
 {
   "name": "ashtin",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "ArchivesSpace Hacker's Toolkit (in Node).",
   "repository": "https://github.com/quoideneuf/ashtin",
   "main": "./index.js",
