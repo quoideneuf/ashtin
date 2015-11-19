@@ -33,15 +33,15 @@ module.exports = function(api) {
 
       if (typeof(json[p]) === 'object' && json[p].length) {
         json[p].each(function(el) {
-          val += JSON.stringify(el) + "\n";
+          val += JSON.stringify(el, null, 2) + ",\n";
         });
       } else {
-        val = JSON.stringify(json[p]);
+        val = JSON.stringify(json[p], null, 2);
       }
 
 
       if (typeof(val) != 'string') {
-        val = JSON.stringify(val);
+        val = JSON.stringify(val, null, 2);
       }
 
       val = val.replace(/,"/, ', "')
