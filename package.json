@@ -16,7 +16,7 @@
   "dependencies": {
     "ansi": "^0.3.0",
     "asapi": "^0.1.5",
-    "cli-table": "^0.3.1",
+    "cli-table2": "^0.1.9",
     "events": "^1.0.2",
     "form-data": "^0.2.0",
     "helmsman": "^1.0.0",

@@ -3,7 +3,7 @@
 var argv = require('minimist')(process.argv.slice(2));
 var fs = require('fs');
 var path = require('path');
-var Table = require('cli-table');
+var Table = require('cli-table2');
 
 module.exports = function(api) {
 
@@ -16,22 +16,38 @@ module.exports = function(api) {
 
   var table = new Table({
     head: ['Property', 'Value'],
-    colWidths: [30, 100]
+    colWidths: [30, 100],
+    wordWrap: true
   });
 
 
   api.get("/repositories/:repo_id/resources/" + id, function(err, json) {
-    if (err) throw err;
+    if (err) {
+      console.log(JSON.stringify(err));
+      throw err;
+    }
 
     for (var i=0; i < Object.keys(json).length; i++) {
       var p = Object.keys(json)[i];
-      var v = JSON.stringify(json[p]);
+      var val = "";
 
-      if (typeof(v) != 'string') {
-        v = JSON.stringify(v);
+      if (typeof(json[p]) === 'object' && json[p].length) {
+        json[p].each(function(el) {
+          val += JSON.stringify(el) + "\n";
+        });
+      } else {
+        val = JSON.stringify(json[p]);
       }
 
-      table.push([p, v]);
+
+      if (typeof(val) != 'string') {
+        val = JSON.stringify(val);
+      }
+
+      val = val.replace(/,"/, ', "')
+      val = val.replace(/,{/, ', {')
+
+      table.push([p, val]);
     }
 
     console.log(table.toString());

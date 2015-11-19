@@ -7,6 +7,8 @@ exports.command = {
 
 
 if (require.main === module) {
+  require('../lib/utils.js');
+
   var path = require('path');
   var pop = require('pop-it');
 
