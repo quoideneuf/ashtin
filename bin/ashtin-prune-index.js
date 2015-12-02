@@ -7,6 +7,21 @@ exports.command = {
 if (require.main === module) {
 
   require('../lib/utils.js');
+
+  var argv = require('minimist')(process.argv.slice(2));
+  
+  function printUsage() {
+    console.log("Usage: ashtin prune-index --solr_url={SOLR URL}");
+  }
+
+  var solrUrl = argv['solr_url'];
+
+  if(!solrUrl) { 
+    printUsage();
+    process.exit(1);
+  }
+
+
   var api = require('../lib/load_api.js');
   var config = require('../lib/config.js');
   var request = require('request');
@@ -27,7 +42,7 @@ if (require.main === module) {
 
   var commitFunc = function() {
     request.post({
-      url: "http://localhost:2999/update",
+      url: solrUrl+"/update",
       json: {
         commit: {
           softCommit: false
@@ -50,7 +65,7 @@ if (require.main === module) {
         }
 
         request.post({
-          url: "http://localhost:2999/update",
+          url: solrUrl+"/update",
           json: solrRequest
         }, function(err, res, body) {
           if(!err) {
