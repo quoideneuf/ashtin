@@ -13,7 +13,7 @@ if (require.main === module) {
   var config = require('../lib/config.js');
   var prompt = require('prompt');
   var argv = require('minimist')(process.argv.slice(2));
-  var Table = require('cli-table2');
+  var Table = require('cli-table3');
 
   switch(argv._.shift()) {
 

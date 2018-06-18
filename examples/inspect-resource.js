@@ -3,7 +3,7 @@
 var argv = require('minimist')(process.argv.slice(2));
 var fs = require('fs');
 var path = require('path');
-var Table = require('cli-table2');
+var Table = require('cli-table3');
 
 module.exports = function(api) {
 
